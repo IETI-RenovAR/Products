@@ -29,8 +29,12 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") String id) {
-        Product product = productService.getProductById(id);
-        return ResponseEntity.ok(product);
+        try {
+            Product product = productService.getProductById(id);
+            return ResponseEntity.ok(product);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
@@ -42,8 +46,13 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable("id") String id, @RequestBody ProductDTO productDTO) {
-        Product updatedProduct = productService.updateProduct(id, productDTO);
-        return ResponseEntity.ok(updatedProduct);
+        Product updatedProduct = null;
+        try {
+            updatedProduct = productService.updateProduct(id, productDTO);
+            return ResponseEntity.ok(updatedProduct);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/{id}")
@@ -51,4 +60,42 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/price/{id}")
+    public ResponseEntity<Double> getPrice(@PathVariable String id){
+        try {
+            return ResponseEntity.ok(productService.getPrice(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/dimensions/{id}")
+    public ResponseEntity<String> getDimensions(@PathVariable String id){
+        try {
+            return ResponseEntity.ok(productService.getDimensions(id));
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping ("/seller/{id}")
+    public ResponseEntity<String> getStore (@PathVariable String id){
+        try {
+            return ResponseEntity.ok(productService.getStore(id));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/sort/{criteria}/{category}")
+    public ResponseEntity<List<Product>> sortProducts(@PathVariable("criteria") String criteria, @PathVariable("category") String category){
+        try {
+            return ResponseEntity.ok(productService.sort(criteria, category));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
 }

@@ -15,6 +15,18 @@ public class Product {
     private String dimensions;
     private String storeId;
 
+    public void setScore(float score) {
+        this.score = score;
+    }
+
+    private String store;
+
+    public float getScore() {
+        return score;
+    }
+
+    private float score;
+
     public Product() {
     }
 
@@ -85,5 +97,13 @@ public class Product {
 
     public void setStoreId(String storeId) {
         this.storeId = storeId;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
     }
 }
