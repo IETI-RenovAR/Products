@@ -13,13 +13,12 @@ public class Product {
     private String category;
     private double price;
     private String dimensions;
-    private String storeId;
+    private String store;
 
     public void setScore(float score) {
         this.score = score;
     }
 
-    private String store;
 
     public float getScore() {
         return score;
@@ -37,7 +36,7 @@ public class Product {
         this.category = category;
         this.price = price;
         this.dimensions = dimensions;
-        this.storeId = storeId;
+        this.store = storeId;
     }
 
     // Constructor a partir de un ProductDTO
@@ -47,7 +46,7 @@ public class Product {
         this.category = productDTO.getCategory();
         this.price = productDTO.getPrice();
         this.dimensions = productDTO.getDimensions();
-        this.storeId = productDTO.getStoreId();
+        this.store = productDTO.getStoreId();
     }
 
     // Getters y Setters
@@ -92,11 +91,11 @@ public class Product {
     }
 
     public String getStoreId() {
-        return storeId;
+        return store;
     }
 
     public void setStoreId(String storeId) {
-        this.storeId = storeId;
+        this.store = storeId;
     }
 
     public String getStore() {
