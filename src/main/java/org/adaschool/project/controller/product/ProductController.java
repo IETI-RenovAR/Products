@@ -39,6 +39,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@RequestBody ProductDTO productDTO) {
+        System.out.println(productDTO.toString());
         Product createdProduct = productService.saveProduct(productDTO);
         URI createdProductUri = URI.create("/v1/products/" + createdProduct.getId());
         return ResponseEntity.created(createdProductUri).body(createdProduct);
